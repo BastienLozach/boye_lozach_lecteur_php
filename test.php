@@ -6,3 +6,5 @@
      //Echo coucou
      echo "coucou";
  }
+
+?>

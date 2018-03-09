@@ -5,8 +5,15 @@ const chalk = require('chalk')
 
 function tokenizer(line, position) {
 
+
+    line = line.replace(/\/\/.*/, "//COMMENTAIRE");
+    line = line.replace(/\/\*.*/, "/*COMMENTAIRE");
+    line = line.replace(/.*\*\//, "/*COMMENTAIRE");
+    line = line.replace(/".*"/, "\"STRING\"");
+    line = line.replace(/'.*'/, "'STRING'");
+
     line = line.replace("    ", "\t");
-    line = line.replace(/=[^=]/, " = ");
+    line = line.replace(/=([^=])/, " = $1");
     line = line.replace(/;/, " ; ");
     line = line.replace(/\{/, " { ");
     line = line.replace(/\}/, " } ");
@@ -16,35 +23,36 @@ function tokenizer(line, position) {
     line = line.replace(/\]/, " ] ");
     line = line.replace(/,/, " , ");
     line = line.replace(/\n/, " \n");
-    line = line.replace(/\+[^\+]/, " + ");
-    line = line.replace(/\-[^\-]/, " - ");
-    line = line.replace(/\*[^\*]/, " * ");
-    line = line.replace(/\/[^\/]/, " / ");
+    line = line.replace(/\+([^\+])/, " + $1");
+    line = line.replace(/\-([^\-])/, " - $1");
+    line = line.replace(/\*([^\*])/, " * $1");
+    line = line.replace(/\/([^\/])/, " / $1");
     line = line.replace(/\+\+/, " ++ ");
     line = line.replace(/\-\-/, " -- ");
     line = line.replace(/\*\*/, " ** ");
 
-    line = line.replace(/![^=]/, " ! ");
-    line = line.replace(/<[^=]/, " < ");
-    line = line.replace(/>[^=]/, " > ");
+    line = line.replace(/!([^=])/, " !$1 ");
+    line = line.replace(/<([^=?])/, " < $1");
+    line = line.replace(/([^\?])>([^=])/, "$1 > $2");
 
-    line = line.replace(/==[^=]/, " == ");
-    line = line.replace(/!=[^=]/, " != ");
-    line = line.replace(/<=[^=]/, " <= ");
-    line = line.replace(/>=[^=]/, " >= ");
+    line = line.replace(/==([^=])/, " == $1");
+    line = line.replace(/!=([^=])/, " != $1");
+    line = line.replace(/<=([^=])/, " <= $1");
+    line = line.replace(/>=([^=])/, " >= $1");
 
     line = line.replace(/===/, " === ");
     line = line.replace(/!==/, " !== ");
     line = line.replace(/<==/, " <== ");
     line = line.replace(/>==/, " >== ");
 
-    line = line.replace(/ +/, " ");
 
-    //console.log(line);
+    console.log(line);
 
     var result = [];
 
-    var words = line.split(" ");
+    var splitRegex = / +/;
+
+    var words = line.split(splitRegex);
     for(var word in words){
       result.push(new Token(words[word], position))
     }

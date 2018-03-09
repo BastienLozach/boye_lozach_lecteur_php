@@ -27,7 +27,7 @@ if (fs.existsSync(entryPoint)) {
       while (line = liner.next()) {
           // console.log(line);
           lineCpt++;
-          var res = tokenizer(line.toString('utf-8'), lineCpt);
+          var res = tokenizer(line.toString('utf-8')+" \n", lineCpt);
           tokens = tokens.concat(res);
       }
 

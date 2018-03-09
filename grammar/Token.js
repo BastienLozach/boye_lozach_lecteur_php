@@ -1,6 +1,8 @@
 const token = {
 	//commentaire et chaines
 	"comment" : /^(\/\/.*)|(\/\*.*\*\/)/,
+    "start_script" : /<\?php/,
+    "end_script" : /\?>/,
 	"string" : /^(\".*\")|(\'.*\')/,
 	
 	//whitespace
