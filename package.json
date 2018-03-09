@@ -1,0 +1,19 @@
+{
+  "name": "boye_lozach_lecteur_php",
+  "version": "1.0.0",
+  "description": "lecteur de code pour php",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BastienLozach/boye_lozach_lecteur_php.git"
+  },
+  "author": "Mathieu Boye/Bastien Lozach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BastienLozach/boye_lozach_lecteur_php/issues"
+  },
+  "homepage": "https://github.com/BastienLozach/boye_lozach_lecteur_php#readme"
+}
