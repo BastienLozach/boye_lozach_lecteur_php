@@ -13,7 +13,7 @@ function tokenizer(line, position) {
     line = line.replace(/'.*'/, "'STRING'");
 
     line = line.replace("    ", "\t");
-    line = line.replace(/=([^=])/, " = $1");
+    line = line.replace(/([^=])=([^=])/, "$1 = $2");
     line = line.replace(/;/, " ; ");
     line = line.replace(/\{/, " { ");
     line = line.replace(/\}/, " } ");
@@ -26,7 +26,7 @@ function tokenizer(line, position) {
     line = line.replace(/\+([^\+])/, " + $1");
     line = line.replace(/\-([^\-])/, " - $1");
     line = line.replace(/\*([^\*])/, " * $1");
-    line = line.replace(/\/([^\/])/, " / $1");
+    line = line.replace(/([^\/])\/([^\/])/, "$1 / $2");
     line = line.replace(/\+\+/, " ++ ");
     line = line.replace(/\-\-/, " -- ");
     line = line.replace(/\*\*/, " ** ");
@@ -53,8 +53,13 @@ function tokenizer(line, position) {
     var splitRegex = / +/;
 
     var words = line.split(splitRegex);
-    for(var word in words){
-      result.push(new Token(words[word], position))
+    for(var i in words){
+      word = words[i]
+      if(word != ""){
+        token = new Token(word, position)
+        result.push(token)
+      }
+      
     }
     // console.log(result)
     return result;
