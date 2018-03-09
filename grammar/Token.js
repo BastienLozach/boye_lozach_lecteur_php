@@ -13,13 +13,13 @@ const token = {
 	//parentheses et accolades
 	"open_accol" : /^{/,
 	"close_accol" : /^}/,
-	"open_parent" : /^(/,
-	"close_parent" : /^)/,
-	
-	//operateurs
-	"binair_operator" : /^[(\+)(\-)(\*)(\.)(\/)(\=)(\<)(\>)(\!)]+/,
-	"unair_operator" : /^[\!]+/,
-	
+	"open_parent" : /^\(/,
+	"close_parent" : /^\)/,
+
+    //operateurs
+    "unair_operator" : /^[\!]+/,
+	"binair_operator" : /^[(\+)(\-)(\*)(\.)(\/)(\=)(\<)(\>)(\!)]{1,3}/,
+
 	//variables et valeurs
 	"var" : /^\$.+/,
 	"number" : /^[0-9\.]+/,
