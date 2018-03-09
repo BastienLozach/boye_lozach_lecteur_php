@@ -3,20 +3,34 @@
 
 const fs = require('fs');
 const chalk = require('chalk');
-const tokenizer = require('./src/parser/tokenizer.js');
-const parser = require('./src/parser/parser.js');
-const transformer = require('./src/transformer/transformer.js');
+const tokenizer = require('./parser/tokenizer.js');
+const parser = require('./parser/parser.js');
+const transformer = require('./transformer/transformer.js');
+const readlines = require('n-readlines')
 
 const args = process.argv;
 const [nodeLocation, karcLocation, ...options] = args;
 
 const entryPoint = options.length != 0
   ? options[0]
-  : 'index.js';
-  
+  : 'test.php';
+
 if (fs.existsSync(entryPoint)) {
+    var tokens = [];
+	var lineCpt = 0;
   try {
-    var tokens = tokenizer(fs.readFileSync(entryPoint, 'utf8'));
+
+      var liner = new readlines(entryPoint);
+
+      var line;
+      var lineCpt = 0;
+      while (line = liner.next()) {
+          // console.log(line);
+          lineCpt++;
+          var res = tokenizer(line.toString('utf-8'), lineCpt);
+          tokens = tokens.concat(res);
+      }
+
 	console.log("\n--- Tokens ----------\n");
 	console.log(tokens);
 	console.log("\n--- AST -------------\n");

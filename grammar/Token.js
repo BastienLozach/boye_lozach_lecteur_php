@@ -9,12 +9,15 @@ const token = {
 
 	//semi-colon
 	"semi-colon" : /^;/,
+    "comma" : /^,/,
 
 	//parentheses et accolades
 	"open_accol" : /^{/,
 	"close_accol" : /^}/,
 	"open_parent" : /^\(/,
 	"close_parent" : /^\)/,
+    "open_crochet" : /^\[/,
+    "close_crochet" : /^\]/,
 
     //operateurs
     "unair_operator" : /^[\!]+/,
@@ -33,28 +36,28 @@ const token = {
 
 
 class Token {
-	constructor(type, value = null, pos = null) {
-		if (!type) throw new Error("a token requires a type")
-
-		this.type = type
-		this.value = value
-		this.pos = pos
-	}
+	// constructor(type, value = null, pos = null) {
+	// 	if (!type) throw new Error("a token requires a type")
+    //
+	// 	this.type = type
+	// 	this.value = value
+	// 	this.pos = pos
+	// }
 
 	constructor(word, pos = null){
 		this.pos = pos,
 		this.value = word
 		this.type = "";
-		keys = Object.keys(token);
-		size = keys.length
-		i = 0 ;
+		var keys = Object.keys(token);
+		var size = keys.length
+		var i = 0 ;
 		while (i < size && this.type == "" ){
 			if( word.match(token[keys[i]]) != null ){
 				this.type = keys[i]
 			}
 			i++
 		}
-		
+		//console.log(word);
 	}
 
 	static get token(){

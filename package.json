@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/BastienLozach/boye_lozach_lecteur_php/issues"
   },
-  "homepage": "https://github.com/BastienLozach/boye_lozach_lecteur_php#readme"
+  "homepage": "https://github.com/BastienLozach/boye_lozach_lecteur_php#readme",
+  "dependencies": {
+    "chalk": "^2.3.2",
+    "n-readlines": "^0.2.8"
+  }
 }
