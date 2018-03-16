@@ -17,7 +17,19 @@ class ExpressionFactory{
         this.errorList = [];
         var i = 0 ;
         var currentTokens = [];
+        var identifierNotFunction = ["while", "for", "if"];
         while (i < tokens.length){
+
+            //Start of PHP script
+            if(i == 0 && tokens[i].type != "start_script"){
+                this.errorList.push(
+                    {
+                        "name" : "Missing Start Script",
+                        "line" : tokens[i].pos,
+                    }
+                )
+                //console.log("ERROR : Missing Start Script ! Line " + tokens[i].pos);
+            }
             
             //parenthesis
             if(tokens[i].type == "open_parent"){
@@ -115,7 +127,10 @@ class ExpressionFactory{
                 }
             }
 
-            
+            //Si c'est une fonction
+            if(tokens[i].type == "identifier" && identifierNotFunction.indexOf(tokens[i].value) == -1  && tokens[i+1].type == "open_parent"){
+                
+            }
             i++ ;
         }
     }
