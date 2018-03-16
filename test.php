@@ -7,6 +7,7 @@
      echo "coucou";
  }
 
-(truc bidule)
-(truc +(bidule) 
+((lpglt))
+((lppll)
+
 ?>
