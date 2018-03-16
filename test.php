@@ -7,7 +7,7 @@
      echo "coucou";
  }
 
-((lpglt))
-((lppll)
+[[lpglt]]
+[[lppll]
 
 ?>

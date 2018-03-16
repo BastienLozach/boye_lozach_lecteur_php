@@ -4,6 +4,7 @@ const EXPRESSION_TYPE = {
     "accolades" : 2,
     "comment" : 3,
     "parenthesis" : 4,
+    "crochets" : 5,
     
 };
 
@@ -74,6 +75,31 @@ class Expression {
                 }
             }
 
+            //crochets
+            if(tokens[i].type == "open_crochet"){
+                var closingToken = null;
+                var intermediaryCrochets = 0;
+                var j = i+1 ;
+                while (j < tokens.length) {
+                    if(tokens[j].type == "open_crochet"){
+                        intermediaryCrochets++ ;
+                    }
+                    if(tokens[j].type == "close_crochet" && intermediaryCrochets != 0){
+                        intermediaryCrochets--;
+                    }
+                    else if(tokens[j].type == "close_crochet" && intermediaryCrochets == 0){
+                        closingToken = j;
+                    }
+                    j++ ;
+                }
+                if (closingToken != null){
+                    var expressionToken = tokens.slice(i, closingToken + 1) ;
+                    list.push(new Expression(expressionToken, EXPRESSION_TYPE["crochet"], null));
+                }
+                else{
+                    console.log("ERROR : Missing Crochet ! Line " + tokens[i].pos);
+                }
+            }
 
             
             i++ ;
