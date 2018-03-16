@@ -21,7 +21,12 @@ class Expression {
         var list = [];
         var i = 0 ;
         var currentTokens = [];
+        var identifierNotFunction = ["while", "for", "if"];
         while (i < tokens.length){
+
+            if(i == 0 && tokens[i].type != "start_script"){
+                console.log("ERROR : Missing Start Script ! Line " + tokens[i].pos);
+            }
             
             //parenthesis
             if(tokens[i].type == "open_parent"){
@@ -99,6 +104,10 @@ class Expression {
                 else{
                     console.log("ERROR : Missing Crochet ! Line " + tokens[i].pos);
                 }
+            }
+
+            //Si c'est une fonction
+            if(tokens[i].type == "identifier" && identifierNotFunction.indexOf(tokens[i].value) == -1  && tokens[i+1].type == "open_parent"){
             }
 
             

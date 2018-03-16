@@ -20,7 +20,7 @@ function verifyIndent(tokens){
             for (var j = i+1; j < tokens.length && j < (i + indentLevel); j++){
                 if(tokens[j].type != "tab"){
                     if (!(j == i + indentLevel -1 && minusOneList.indexOf(tokens[j].type) != -1)){
-                        console.log("Cas basique Il Manque une tab ligne : " + tokens[j].pos);
+                        console.log("Il Manque une tab ligne : " + tokens[j].pos);
                     }
                     
                 }
