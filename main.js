@@ -7,6 +7,7 @@ const tokenizer = require('./parser/tokenizer.js');
 const parser = require('./parser/parser.js');
 const transformer = require('./transformer/transformer.js');
 const readlines = require('n-readlines')
+const Expression = require('./grammar/Expression.js');
 
 const args = process.argv;
 const [nodeLocation, karcLocation, ...options] = args;
@@ -34,7 +35,8 @@ if (fs.existsSync(entryPoint)) {
 	console.log("\n--- Tokens ----------\n");
 	console.log(tokens);
 	console.log("\n--- AST -------------\n");
-	var AST = parser(tokens);
+  //var AST = parser(tokens);
+  var AST = Expression.getExpressionList(tokens)
 	console.log(AST);
 	console.log("\n--- Transformation --\n");
 	var rapport = transformer(AST);

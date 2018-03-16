@@ -7,4 +7,6 @@
      echo "coucou";
  }
 
+(truc bidule)
+(truc +(bidule) 
 ?>
