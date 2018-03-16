@@ -8,6 +8,7 @@ const parser = require('./parser/parser.js');
 const transformer = require('./transformer/transformer.js');
 const readlines = require('n-readlines')
 const Expression = require('./grammar/Expression.js');
+const ExpressionFactory = require('./parser/ExpressionFactory.js');
 const indentChecker = require('./good_pratices/IndentChecker.js');
 
 const args = process.argv;
@@ -33,17 +34,27 @@ if (fs.existsSync(entryPoint)) {
           tokens = tokens.concat(res);
       }
 
-	console.log("\n--- Tokens ----------\n");
-	console.log(tokens);
-	console.log("\n--- AST -------------\n");
+	//console.log("\n--- Tokens ----------\n");
+	//console.log(tokens);
+	//console.log("\n--- AST -------------\n");
   //var AST = parser(tokens);
-  var AST = Expression.getExpressionList(tokens)
-  console.log(AST);
+
+  console.log("\n--- Compiler Error -------------\n");
+  var expFactory = new ExpressionFactory(tokens) ;
+  var AST = expFactory.getExpressionList() ;
+  var ErrorList = expFactory.getErrorList() ;
+  ErrorList.forEach(element => {
+    var name = element["name"] ;
+    var line = element["line"] ;
+    console.log("Compiler Error " + name + " - Line : " + line);
+  });
+  //console.log(AST);
   console.log("\n--- Indent Check -------------\n");
-  indentChecker(tokens) ;
-	console.log("\n--- Transformation --\n");
-	var rapport = transformer(AST);
-	console.log(rapport);
+  var indentError = indentChecker(tokens) ;
+  console.log("Taux d'erreur d'indentation : " + indentError)
+	//console.log("\n--- Transformation --\n");
+	//var rapport = transformer(AST);
+	//console.log(rapport);
   } catch (e) {
     printError(e);
   }

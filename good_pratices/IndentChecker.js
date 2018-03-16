@@ -3,6 +3,7 @@
 function verifyIndent(tokens){
     var indentLevel = 0 ;
     var i = 0 ;
+    var errorLine = 0 ;
     var plusOneList = ["open_accol", "open_crochet", "open_parent"] ;
     var minusOneList = ["close_accol", "close_crochet", "close_parent"] ;
     while ( i < tokens.length ){
@@ -20,7 +21,8 @@ function verifyIndent(tokens){
             for (var j = i+1; j < tokens.length && j < (i + indentLevel); j++){
                 if(tokens[j].type != "tab"){
                     if (!(j == i + indentLevel -1 && minusOneList.indexOf(tokens[j].type) != -1)){
-                        console.log("Il Manque une tab ligne : " + tokens[j].pos);
+                        errorLine++ ;
+                        console.log("tabulation incorrecte - Ligne : " + tokens[j].pos);
                     }
                     
                 }
@@ -28,6 +30,7 @@ function verifyIndent(tokens){
         }
         i++ ;
     }
+    return errorLine ;
 }
 
 module.exports = verifyIndent;

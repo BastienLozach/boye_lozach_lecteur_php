@@ -45,9 +45,6 @@ function tokenizer(line, position) {
     line = line.replace(/<==/, " <== ");
     line = line.replace(/>==/, " >== ");
 
-
-    console.log(line);
-
     var result = [];
 
     var splitRegex = / +/;
@@ -61,7 +58,6 @@ function tokenizer(line, position) {
       }
       
     }
-    // console.log(result)
     return result;
 
 };
