@@ -8,6 +8,7 @@ const parser = require('./parser/parser.js');
 const transformer = require('./transformer/transformer.js');
 const readlines = require('n-readlines')
 const Expression = require('./grammar/Expression.js');
+const indentChecker = require('./good_pratices/IndentChecker.js');
 
 const args = process.argv;
 const [nodeLocation, karcLocation, ...options] = args;
@@ -37,7 +38,9 @@ if (fs.existsSync(entryPoint)) {
 	console.log("\n--- AST -------------\n");
   //var AST = parser(tokens);
   var AST = Expression.getExpressionList(tokens)
-	console.log(AST);
+  console.log(AST);
+  console.log("\n--- Indent Check -------------\n");
+  indentChecker(tokens) ;
 	console.log("\n--- Transformation --\n");
 	var rapport = transformer(AST);
 	console.log(rapport);
