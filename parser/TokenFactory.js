@@ -72,5 +72,9 @@ class TokenFactory{
       return this.errorList ;
     }
 
+    getErrorNbr(){
+        return this.errorList.length;
+    }
+
 }
 module.exports = TokenFactory

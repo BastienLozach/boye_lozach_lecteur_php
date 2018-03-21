@@ -64,14 +64,31 @@ if (fs.existsSync(entryPoint)) {
       var name = element["name"] ;
       var line = element["line"] ;
       console.log("Indent Error - " + name + " - Line : " + line);
-    });
 
-    console.log("\n--- Bilan -------------\n");
+    });
+      console.log("nombre d'erreur d'indentation : " + indentError);
+
+
+      console.log("\n--- Bilan -------------\n");
     var indentError = indentChecker.getNbr() ;
-    console.log("nombre d'erreur d'indentation : " + indentError)
     //console.log("\n--- Transformation --\n");
     //var rapport = transformer(AST);
     //console.log(rapport);
+
+      var noteToken = 5 - tokFactory.getErrorNbr()*0.5;
+      var noteCompiler = 5 - expFactory.getErrorNbr()*0.5;
+      var noteIdent = 5 - indentChecker.getNbr()*0.5;
+
+      var baremePart = 5;
+      var finalBareme = baremePart*3;
+
+      var noteFinale = noteToken + noteCompiler + noteToken;
+
+      console.log("Note Token : " + noteToken + "/" + baremePart);
+      console.log("Note Compiler : " + noteCompiler + "/" + baremePart);
+      console.log("Note Identation : " + noteIdent + "/" + baremePart);
+      console.log("Note Finale : " + noteFinale + "/" + finalBareme);
+
 
     console.log("\n--- End -------------\n")
   } catch (e) {

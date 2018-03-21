@@ -143,6 +143,10 @@ class ExpressionFactory{
         return this.errorList ;
     }
 
+    getErrorNbr(){
+        return this.errorList.length;
+    }
+
 }
 
 
