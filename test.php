@@ -2,8 +2,6 @@
 
  echo "hello world !";
  $test = 12;
- = 145;
- "kok" = 12;
  if($test == 11){
      //Echo coucou
      echo "coucou";
@@ -28,9 +26,17 @@ if(){
 	}
 }
 
-$toutvabien
-$111nope
-$CaVaPas
+$toutvabien ;
+$111nope ;
+$CaVaPas ;
+
+$ducoup = $on + $fait + "un test" ;
+
+$ducoup = $on + $fait + "un test" ;
+
+$ducoup = $on + $fait + "un test"
+
+$autre
 
 ?>
 

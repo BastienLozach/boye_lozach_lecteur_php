@@ -148,6 +148,38 @@ class ExpressionFactory{
                 }
             }
 
+            //fin de ligne
+            var containsAValue= ["var", "string", "number"] ;
+            var nextOne= ["var", "string", "number", "identifier", "end_script"] ;
+            if(containsAValue.indexOf(tokens[i].type) != -1){
+                var j = 1 ;
+                var stop = false ;
+                while (i+j < tokens.length-1 && !stop){
+                    stop = true ;
+                    if (["newline", "tab"].indexOf(tokens[i + j].type) != -1){
+                        j++ ;
+                        stop = false ;
+                    }
+                    else if (nextOne.indexOf(tokens[i + j].type) != -1){
+                        this.errorList.push(
+                            {
+                                "name" : "Missing ;",
+                                "line" : tokens[i].pos,
+                            }
+                        ) 
+                    }
+                }
+                if (i+j == tokens.length){
+                    this.errorList.push(
+                        {
+                            "name" : "Missing ;",
+                            "line" : tokens[i].pos,
+                        }
+                    )
+                }
+            }
+
+
             //Si c'est une fonction
             if(tokens[i].type == "identifier" && identifierNotFunction.indexOf(tokens[i].value) == -1  && tokens[i+1].type == "open_parent"){
                 
