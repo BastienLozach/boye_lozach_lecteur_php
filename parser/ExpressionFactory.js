@@ -127,6 +127,27 @@ class ExpressionFactory{
                 }
             }
 
+            if(tokens[i].type == "binair_operator" && tokens[i].value == "="){
+                if(i!=0 && i<tokens.length-1){
+                    var precedentToken = tokens[i-1];
+                    if(precedentToken.type != "var" && tokens[i+1].type!="binair_operator"){
+                        this.errorList.push(
+                            {
+                                "name" : "Assignement error : Not a variable",
+                                "line" : tokens[i].pos,
+                            }
+                        )
+                    }
+                } else {
+                    this.errorList.push(
+                        {
+                            "name" : "Assignement error : Missing term",
+                            "line" : tokens[i].pos,
+                        }
+                    )
+                }
+            }
+
             //Si c'est une fonction
             if(tokens[i].type == "identifier" && identifierNotFunction.indexOf(tokens[i].value) == -1  && tokens[i+1].type == "open_parent"){
                 

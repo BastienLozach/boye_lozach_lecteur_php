@@ -2,6 +2,8 @@
 
  echo "hello world !";
  $test = 12;
+ = 145;
+ "kok" = 12;
  if($test == 11){
      //Echo coucou
      echo "coucou";
