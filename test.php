@@ -25,5 +25,10 @@ if(){
 	lhlhlh
 	}
 }
+
+$toutvabien
+$111nope
+$CaVaPas
+
 ?>
 

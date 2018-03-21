@@ -10,7 +10,7 @@ const Expression = require('./grammar/Expression.js');
 const ExpressionFactory = require('./parser/ExpressionFactory.js');
 const TokenFactory = require('./parser/TokenFactory.js');
 const IndentChecker = require('./good_pratices/IndentChecker.js');
-const IndentChecker = require('./good_pratices/IndentChecker.js');
+const CamelCaseChecker = require('./good_pratices/CamelCaseChecker.js');
 
 const args = process.argv;
 const [nodeLocation, karcLocation, ...options] = args;
@@ -72,24 +72,41 @@ if (fs.existsSync(entryPoint)) {
     var indentError = indentChecker.getNbr() ;
     console.log("nombre d'erreur d'indentation : " + indentError);
 
+    //indentCheck
+    console.log("\n--- CamelCase Check -------------\n");
+    var camelCaseChecker = new CamelCaseChecker(tokens)
+    var camelCaseError = camelCaseChecker.getCamelCaseErrors() ;
+    camelCaseError.forEach(element => {
+      var name = element["name"] ;
+      var line = element["line"] ;
+      console.log("CamelCase Error - " + name + " - Line : " + line);
+
+    });
+    var camelCaseError = camelCaseChecker.getNbr() ;
+    console.log("nombre d'erreur de camelCase : " + camelCaseError);
+
 
       console.log("\n--- Bilan -------------\n");
     
       //Bilan
-
-      var noteToken = 5 - tokFactory.getErrorNbr()*0.5;
-      var noteCompiler = 5 - expFactory.getErrorNbr()*0.5;
-      var noteIdent = 5 - indentChecker.getNbr()*0.5;
-
+      //regles
       var baremePart = 5;
-      var finalBareme = baremePart*3;
+      var finalBareme = baremePart*4;
+      var cost = 0.5;
 
-      var noteFinale = noteToken + noteCompiler + noteToken;
+      //notes
+      var noteToken = baremePart - tokFactory.getErrorNbr()*cost;
+      var noteCompiler = baremePart - expFactory.getErrorNbr()*cost;
+      var noteIdent = baremePart - indentChecker.getNbr()*cost;
+      var noteCamelCase = baremePart - camelCaseChecker.getNbr()*cost;
+
+      var noteFinale = noteToken + noteCompiler + noteToken + noteCamelCase;
 
       console.log("Note Token : " + noteToken + "/" + baremePart);
       console.log("Note Compiler : " + noteCompiler + "/" + baremePart);
       console.log("Note Identation : " + noteIdent + "/" + baremePart);
-      console.log("Note Finale : " + noteFinale + "/" + finalBareme);
+      console.log("Note CamelCase : " + noteCamelCase + "/" + baremePart);
+      console.log("\nNote Finale : " + noteFinale + "/" + finalBareme);
 
 
     console.log("\n--- End -------------\n")

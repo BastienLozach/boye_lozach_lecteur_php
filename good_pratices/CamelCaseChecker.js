@@ -5,20 +5,21 @@ class CamelCaseChecker{
         //trace de la version 0
         //"inutile"
         this.nbr = 0
-        this.verifyIndent(tokens) ;
+        this.verifyCamelCase(tokens) ;
     }
 
     verifyCamelCase(tokens){
         tokens.forEach(token => {
-            if(token.type = "var"){
-                firstLetter = token.value.charAt(1) ;
-                if(firstLetter == character.toUpperCase()){
+            if(token.type == "var"){
+                var firstLetter = token.value.charAt(1) ;
+                if(firstLetter == firstLetter.toUpperCase()){
                     this.camelCaseErrors.push(
                         {
                             "name" : "camelCase miniscule incorrect",
-                            "line" : tokens[i].pos,
+                            "line" : token.pos,
                         }
                     )
+                    this.nbr++ ;
                 }
 
             }
