@@ -10,6 +10,7 @@ const Expression = require('./grammar/Expression.js');
 const ExpressionFactory = require('./parser/ExpressionFactory.js');
 const TokenFactory = require('./parser/TokenFactory.js');
 const IndentChecker = require('./good_pratices/IndentChecker.js');
+const IndentChecker = require('./good_pratices/IndentChecker.js');
 
 const args = process.argv;
 const [nodeLocation, karcLocation, ...options] = args;
@@ -23,6 +24,8 @@ if (fs.existsSync(entryPoint)) {
 	var lineCpt = 0;
   try {
 
+
+    //token
     console.log("\n--- Tokens Error----------\n");
       var tokFactory = new TokenFactory() ;
       var liner = new readlines(entryPoint);
@@ -42,11 +45,9 @@ if (fs.existsSync(entryPoint)) {
         var line = element["line"] ;
         console.log("Token Error - " + name + " - Line : " + line);
       });
-    //console.log("\n--- Tokens ----------\n");
-    //console.log(tokens);
-    //console.log("\n--- AST -------------\n");
-    //var AST = parser(tokens);
 
+
+    //Compile
     console.log("\n--- Compiler Error -------------\n");
     var expFactory = new ExpressionFactory(tokens) ;
     var AST = expFactory.getExpressionList() ;
@@ -56,7 +57,9 @@ if (fs.existsSync(entryPoint)) {
       var line = element["line"] ;
       console.log("Compiler Error - " + name + " - Line : " + line);
     });
-    //console.log(AST);
+    
+
+    //indentCheck
     console.log("\n--- Indent Check -------------\n");
     var indentChecker = new IndentChecker(tokens)
     var indentError = indentChecker.getIndentErrors() ;
@@ -66,14 +69,13 @@ if (fs.existsSync(entryPoint)) {
       console.log("Indent Error - " + name + " - Line : " + line);
 
     });
-      console.log("nombre d'erreur d'indentation : " + indentError);
+    var indentError = indentChecker.getNbr() ;
+    console.log("nombre d'erreur d'indentation : " + indentError);
 
 
       console.log("\n--- Bilan -------------\n");
-    var indentError = indentChecker.getNbr() ;
-    //console.log("\n--- Transformation --\n");
-    //var rapport = transformer(AST);
-    //console.log(rapport);
+    
+      //Bilan
 
       var noteToken = 5 - tokFactory.getErrorNbr()*0.5;
       var noteCompiler = 5 - expFactory.getErrorNbr()*0.5;
