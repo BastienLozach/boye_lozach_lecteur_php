@@ -16,8 +16,10 @@ class TokenFactory{
         line = line.replace(/.*\*\//, "/*COMMENTAIRE");
         line = line.replace(/".*"/, "\"STRING\"");
         line = line.replace(/'.*'/, "'STRING'");
-
-        line = line.replace("    ", "\t");
+        
+        line = line.replace(/\t/, " \t ");
+        line = line.replace("    ", " \t ");
+        
         line = line.replace(/([^=])=([^=])/, "$1 = $2");
         line = line.replace(/;/, " ; ");
         line = line.replace(/\{/, " { ");
@@ -27,7 +29,7 @@ class TokenFactory{
         line = line.replace(/\[/, " [ ");
         line = line.replace(/\]/, " ] ");
         line = line.replace(/,/, " , ");
-        line = line.replace(/\n/, " \n");
+        line = line.replace(/\n/, " \n ");
         line = line.replace(/\+([^\+])/, " + $1");
         line = line.replace(/\-([^\-])/, " - $1");
         line = line.replace(/\*([^\*])/, " * $1");

@@ -18,16 +18,20 @@ class IndentCheck{
             //set indentLevel
             if (plusOneList.indexOf(tokens[i].type) != -1){
                 indentLevel++ ;
+                
+                
             }
             if (minusOneList.indexOf(tokens[i].type) != -1){
                 indentLevel-- ;
+                
             }
 
             //verify level
             if(tokens[i].type == "newline"){
-                for (var j = i+1; j < tokens.length && j < (i + indentLevel); j++){
+                for (var j = i+1; j < tokens.length && j < (i + indentLevel +1); j++){
+                    console.log(tokens[j]) ;
                     if(tokens[j].type != "tab"){
-                        if (!(j == i + indentLevel -1 && minusOneList.indexOf(tokens[j].type) != -1)){
+                        if (!(j != (i + indentLevel -1) && minusOneList.indexOf(tokens[j].type) != -1)){
                             this.nbr++ ;
                             this.indentErrors.push(
                                 {
