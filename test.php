@@ -7,8 +7,8 @@
      echo "coucou";
  }
 
-[[lpglt]]
-[[lppll]
+
+[[lppll]]
 {
 	hlhevsg
 kjkmmj
@@ -37,6 +37,17 @@ $ducoup = $on + $fait + "un test" ;
 $ducoup = $on + $fait + "un test"
 
 $autre
+
+truc{
+	muche{
+		tidy_error_count
+	}
+}
+foo{
+	bar{
+		tidy_error_count
+	}
+}
 
 ?>
 

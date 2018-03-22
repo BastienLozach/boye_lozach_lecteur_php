@@ -31,7 +31,7 @@ class IndentCheck{
                             this.nbr++ ;
                             this.indentErrors.push(
                                 {
-                                    "name" : "tabulation incorrecte",
+                                    "name" : "tabulation incorrecte" + "level : " + indentLevel,
                                     "line" : tokens[i].pos,
                                 }
                             )

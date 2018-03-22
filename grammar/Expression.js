@@ -15,11 +15,19 @@ class Expression {
     constructor(tokens, type, subExpressions){
         this.tokens = tokens;
         this.type = type ;
-        this.subExpressions = subExpressions
+        this.subExpressions = subExpressions ;
     }
 
     static EXPRESSION_TYPE(){
         return EXPRESSION_TYPE ;
+    }
+
+    getSubExpression(){
+        return this.subExpressions ;
+    }
+
+    setSubExpression(subExpressions){
+        this.subExpressions = subExpressions ;
     }
 
 }
