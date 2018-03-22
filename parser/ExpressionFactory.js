@@ -130,7 +130,7 @@ class ExpressionFactory{
                     var expression = new Expression(expressionToken, Expression.EXPRESSION_TYPE()["crochet"], null)
                     var sub = expressionToken.slice(1, expressionToken.length -2)
                     if (sub.length != 0){
-                        console.log(sub)
+                        
                         expression.setSubExpression(this.generateExpressionList(sub))
                     }
                     expressions.push(expression);

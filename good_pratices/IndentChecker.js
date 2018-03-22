@@ -29,14 +29,15 @@ class IndentCheck{
             //verify level
             if(tokens[i].type == "newline"){
                 for (var j = i+1; j < tokens.length && j < (i + indentLevel +1); j++){
-                    console.log(tokens[j]) ;
+                    
                     if(tokens[j].type != "tab"){
+                        
                         if (!(j != (i + indentLevel -1) && minusOneList.indexOf(tokens[j].type) != -1)){
                             this.nbr++ ;
                             this.indentErrors.push(
                                 {
-                                    "name" : "tabulation incorrecte" + "level : " + indentLevel,
-                                    "line" : tokens[i].pos,
+                                    "name" : "tabulation incorrecte",
+                                    "line" : tokens[i].pos +1,
                                 }
                             )
                             //console.log("tabulation incorrecte - Ligne : " + tokens[j].pos);

@@ -46,7 +46,7 @@ truc{
 foo{
 	bar{
 		tidy_error_count
-	}
+	
 }
 
 ?>
